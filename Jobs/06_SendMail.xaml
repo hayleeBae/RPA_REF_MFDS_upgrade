@@ -2,11 +2,12 @@
   <x:Members>
     <x:Property Name="in_dicConfig" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_filterWordMonthDT" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_strMailTitle" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1219,834</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>486,869</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_06_SendMail_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -46,6 +47,7 @@
       <x:String>System.Linq.Expressions</x:String>
       <x:String>UiPath.Excel</x:String>
       <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -109,22 +111,44 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="_06_SendMail" sap:VirtualizedContainerService.HintSize="416,769" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="_06_SendMail" sap:VirtualizedContainerService.HintSize="496,804" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strEMail" />
       <Variable x:TypeArguments="ss:SecureString" Name="strPW" />
       <Variable x:TypeArguments="x:String" Name="finalHtml" />
       <Variable x:TypeArguments="sd:DataTable" Name="dtMonthIssue" />
+      <Variable x:TypeArguments="x:String" Name="strMailDate" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="UiPath_Gmail" CacheStrategy="None" DisplayName="Get Credential" FolderPath="baeeura94@gmail.com's workspace" sap:VirtualizedContainerService.HintSize="354,183" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[strPW]" Username="[strEMail]" />
-    <ui:InvokeCode ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="코드 내부에도 에러처리 필요 -&gt; 무한 대기 됨" Code="' 오늘의 날짜 생성&#xA;Dim todayDate As String = Today.ToString(&quot;yyyy/MM&quot;)&#xA;&#xA;' HTML 코드를 생성할 StringBuilder 초기화&#xA;Dim sb As New System.Text.StringBuilder()&#xA;&#xA;' 테이블 전의 문구 추가&#xA;sb.Append(&quot;안녕하세요.&lt;br&gt;&quot;)&#xA;sb.Append(todayDate + &quot; 의약품 안전나라 행정처분사항 전달드립니다.&lt;br&gt;&quot;)&#xA;sb.Append(&quot;주요 이슈사항은 아래와 같습니다.&lt;br&gt;&quot;)&#xA;&#xA;' CSS 스타일 추가&#xA;sb.Append(&quot;&lt;style type=&quot;&quot;text/css&quot;&quot;&gt;&quot;)&#xA;sb.Append(&quot;.tg  {border-collapse:collapse;border-spacing:0;}&quot;)&#xA;sb.Append(&quot;.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;&quot;)&#xA;sb.Append(&quot;  overflow:hidden;padding:10px 5px;word-break:normal;}&quot;)&#xA;sb.Append(&quot;.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;&quot;)&#xA;sb.Append(&quot;  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}&quot;)&#xA;sb.Append(&quot;.tg .tg-q6po{background-color:#FF0;border-color:inherit;font-weight:bold;text-align:center;vertical-align:bottom}&quot;)&#xA;sb.Append(&quot;.tg .tg-za14{border-color:inherit;text-align:left;vertical-align:bottom}&quot;)&#xA;sb.Append(&quot;.tg tr {border-bottom: 1px solid black;} /* 각 행 아래에 선 추가 */&quot;)&#xA;sb.Append(&quot;.tg td {border-right: 1px solid black;} /* 각 셀 우측에 선 추가 */&quot;)&#xA;sb.Append(&quot;.tg th {border-right: 1px solid black;} /* 헤더 셀 우측에 선 추가 */&quot;)&#xA;sb.Append(&quot;&lt;/style&gt;&quot;)&#xA;&#xA;' HTML 테이블 헤더 생성&#xA;sb.Append(&quot;&lt;table class=&quot;&quot;tg&quot;&quot; style=&quot;&quot;border: 1px solid black;&quot;&quot;&gt;&lt;thead&gt;&lt;tr&gt;&quot;)&#xA;For Each col As DataColumn In in_filterWordMonthDT.Columns&#xA;    sb.Append(&quot;&lt;th class=&quot;&quot;tg-q6po&quot;&quot;&gt;&quot; + col.ColumnName + &quot;&lt;/th&gt;&quot;)&#xA;Next&#xA;sb.Append(&quot;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&quot;)&#xA;&#xA;' HTML 테이블 데이터 생성&#xA;For Each row As DataRow In in_filterWordMonthDT.Rows&#xA;    sb.Append(&quot;&lt;tr&gt;&quot;)&#xA;    For Each col As DataColumn In in_filterWordMonthDT.Columns&#xA;        sb.Append(&quot;&lt;td class=&quot;&quot;tg-za14&quot;&quot;&gt;&quot; + row(col.ColumnName).ToString() + &quot;&lt;/td&gt;&quot;)&#xA;    Next&#xA;    sb.Append(&quot;&lt;/tr&gt;&quot;)&#xA;Next&#xA;&#xA;' HTML 테이블 닫기&#xA;sb.Append(&quot;&lt;/tbody&gt;&lt;/table&gt;&quot;)&#xA;&#xA;' 테이블 후의 문구 추가&#xA;sb.Append(&quot;아래의 첨부문서에 해당내역이 정리되어 있으니 참고 부탁드립니다.&lt;br&gt;&quot;)&#xA;sb.Append(&quot;감사합니다.&quot;)&#xA;&#xA;' 최종 HTML 코드 출력&#xA;Dim finalHtml As String = sb.ToString()&#xA;&#xA;out_Html = finalHtml" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="354,236" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="UiPath_Gmail" CacheStrategy="None" DisplayName="Get Credential" FolderPath="baeeura94@gmail.com's workspace" sap:VirtualizedContainerService.HintSize="434,65" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[strPW]" Username="[strEMail]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotCredential>
+    <Assign sap2010:Annotation.AnnotationText="\d{4}/\d{2}" DisplayName="수신 메일 제목의 날짜 | Assign" sap:VirtualizedContainerService.HintSize="434,153" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[strMailDate]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[system.Text.RegularExpressions.Regex.Match(in_strMailTitle, "\d{4}/\d{2}").Value.ToString.Trim]</InArgument>
+      </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Assign>
+    <ui:InvokeCode ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="코드 내부에도 에러처리 필요 -&gt; 무한 대기 됨" Code="' 오늘의 날짜 생성&#xA;Dim todayDate As String = Today.ToString(&quot;yyyy/MM&quot;)&#xA;&#xA;' HTML 코드를 생성할 StringBuilder 초기화&#xA;Dim sb As New System.Text.StringBuilder()&#xA;&#xA;' 테이블 전의 문구 추가&#xA;sb.Append(&quot;안녕하세요.&lt;br&gt;&quot;)&#xA;sb.Append(todayDate + &quot; 의약품 안전나라 행정처분사항 전달드립니다.&lt;br&gt;&quot;)&#xA;sb.Append(&quot;주요 이슈사항은 아래와 같습니다.&lt;br&gt;&quot;)&#xA;&#xA;' CSS 스타일 추가&#xA;sb.Append(&quot;&lt;style type=&quot;&quot;text/css&quot;&quot;&gt;&quot;)&#xA;sb.Append(&quot;.tg  {border-collapse:collapse;border-spacing:0;}&quot;)&#xA;sb.Append(&quot;.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;&quot;)&#xA;sb.Append(&quot;  overflow:hidden;padding:10px 5px;word-break:normal;}&quot;)&#xA;sb.Append(&quot;.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;&quot;)&#xA;sb.Append(&quot;  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}&quot;)&#xA;sb.Append(&quot;.tg .tg-q6po{background-color:#FF0;border-color:inherit;font-weight:bold;text-align:center;vertical-align:bottom}&quot;)&#xA;sb.Append(&quot;.tg .tg-za14{border-color:inherit;text-align:left;vertical-align:bottom}&quot;)&#xA;sb.Append(&quot;.tg tr {border-bottom: 1px solid black;} /* 각 행 아래에 선 추가 */&quot;)&#xA;sb.Append(&quot;.tg td {border-right: 1px solid black;} /* 각 셀 우측에 선 추가 */&quot;)&#xA;sb.Append(&quot;.tg th {border-right: 1px solid black;} /* 헤더 셀 우측에 선 추가 */&quot;)&#xA;sb.Append(&quot;&lt;/style&gt;&quot;)&#xA;&#xA;' HTML 테이블 헤더 생성&#xA;sb.Append(&quot;&lt;table class=&quot;&quot;tg&quot;&quot; style=&quot;&quot;border: 1px solid black;&quot;&quot;&gt;&lt;thead&gt;&lt;tr&gt;&quot;)&#xA;For Each col As DataColumn In in_filterWordMonthDT.Columns&#xA;    sb.Append(&quot;&lt;th class=&quot;&quot;tg-q6po&quot;&quot;&gt;&quot; + col.ColumnName + &quot;&lt;/th&gt;&quot;)&#xA;Next&#xA;sb.Append(&quot;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&quot;)&#xA;&#xA;' HTML 테이블 데이터 생성&#xA;For Each row As DataRow In in_filterWordMonthDT.Rows&#xA;    sb.Append(&quot;&lt;tr&gt;&quot;)&#xA;    For Each col As DataColumn In in_filterWordMonthDT.Columns&#xA;        sb.Append(&quot;&lt;td class=&quot;&quot;tg-za14&quot;&quot;&gt;&quot; + row(col.ColumnName).ToString() + &quot;&lt;/td&gt;&quot;)&#xA;    Next&#xA;    sb.Append(&quot;&lt;/tr&gt;&quot;)&#xA;Next&#xA;&#xA;' HTML 테이블 닫기&#xA;sb.Append(&quot;&lt;/tbody&gt;&lt;/table&gt;&quot;)&#xA;&#xA;' 테이블 후의 문구 추가&#xA;sb.Append(&quot;아래의 첨부문서에 해당내역이 정리되어 있으니 참고 부탁드립니다.&lt;br&gt;&quot;)&#xA;sb.Append(&quot;감사합니다.&quot;)&#xA;&#xA;' 최종 HTML 코드 출력&#xA;Dim finalHtml As String = sb.ToString()&#xA;&#xA;out_Html = finalHtml" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="434,236" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
       <ui:InvokeCode.Arguments>
         <InArgument x:TypeArguments="sd:DataTable" x:Key="in_filterWordMonthDT">[in_filterWordMonthDT]</InArgument>
         <OutArgument x:TypeArguments="x:String" x:Key="out_Html">[finalHtml]</OutArgument>
@@ -137,7 +161,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:InvokeCode>
-    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" ReplyTo="{x:Null}" Result="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" sap2010:Annotation.AnnotationText="- 호스트 설정&#xA;  - 서버 : &quot;smtp.gmail.com&quot;, &quot;smtp.naver.com&quot;&#xA;  - 포트 : 587&#xA;&#xA;in_dicConfig(&quot;Receive&quot;).ToString" Body="[finalHtml]" DisplayName="Send SMTP Mail Message" Email="[strEmail]" EnableSSL="True" From="[strEmail]" sap:VirtualizedContainerService.HintSize="354,262" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="True" Port="587" SecureConnection="Auto" SecurePassword="[strPW]" Server="smtp.gmail.com" Subject="[String.Format(in_dicConfig(&quot;Title&quot;).ToString, DateTime.Today.ToString(&quot;yyyy/MM/dd&quot;))]" To="[in_dicConfig(&quot;Receive&quot;).ToString.Trim]">
+    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" ReplyTo="{x:Null}" Result="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" sap2010:Annotation.AnnotationText="- 호스트 설정&#xA;  - 서버 : &quot;smtp.gmail.com&quot;, &quot;smtp.naver.com&quot;&#xA;  - 포트 : 587&#xA;&#xA;in_dicConfig(&quot;Receive&quot;).ToString" Body="[finalHtml]" DisplayName="Send SMTP Mail Message" Email="[strEmail]" EnableSSL="True" From="[strEmail]" sap:VirtualizedContainerService.HintSize="434,262" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="True" Port="587" SecureConnection="Auto" SecurePassword="[strPW]" Server="smtp.gmail.com" Subject="[String.Format(in_dicConfig(&quot;Title&quot;).ToString, strMailDate)]" To="[in_dicConfig(&quot;Receive&quot;).ToString.Trim]">
       <ui:SendMail.Files>
         <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
           <InArgument x:TypeArguments="x:String">["Data\Output\" + "의약품_행정처분_조회내역_배혜빈.xlsx"]</InArgument>

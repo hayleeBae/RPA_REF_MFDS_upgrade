@@ -10,7 +10,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1219,1956</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1177,1614</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_01_2_ProcessingVariable_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -97,7 +97,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="메일타이틀은 해당월과 주제를 입력받아서 그 값을 조회&#xA;listTitle, listContents 변수에서 필요한 메일 내용 추출&#xA;- 검색어&#xA;- 검색 기간" DisplayName="_01_2_ProcessingVariable" sap:VirtualizedContainerService.HintSize="541,1891" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="메일타이틀은 해당월과 주제를 입력받아서 그 값을 조회&#xA;listTitle, listContents 변수에서 필요한 메일 내용 추출&#xA;- 검색어, 검색 기간" DisplayName="_01_2_ProcessingVariable" sap:VirtualizedContainerService.HintSize="541,1549" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="InputDate" />
       <Variable x:TypeArguments="x:String" Name="InputTitle" />
@@ -152,12 +152,12 @@ Where System.Text.RegularExpressions.Regex.IsMatch(item, ".*" + InputDate + ".*"
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <Assign sap2010:Annotation.AnnotationText="String.Join(&quot;, &quot;, (From item In in_listTitle Where System.Text.RegularExpressions.Regex.IsMatch(item, &quot;.*&quot; + InputTitle + &quot;.*&quot;)).ToArray)" DisplayName="입력 타이틀 해당 최종 데이터 | Assign" sap:VirtualizedContainerService.HintSize="479,182" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Assign sap2010:Annotation.AnnotationText="String.Join(&quot;, &quot;, (From item In in_listTitle Where System.Text.RegularExpressions.Regex.IsMatch(item, &quot;.*&quot; + InputTitle + &quot;.*&quot;)).ToArray)" DisplayName="입력 타이틀 해당 최종 데이터 | Assign" sap:VirtualizedContainerService.HintSize="479,122" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[out_strMailTitle]</OutArgument>
       </Assign.To>
@@ -168,12 +168,12 @@ Where System.Text.RegularExpressions.Regex.IsMatch(item, ".*" + InputTitle + ".*
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <Assign sap2010:Annotation.AnnotationText="리스트에서 몇 번째 아이템인지 가져올 수 있나?&#xA;yourList.FindIndex(Function(item) &#xA;in_listTitle.FindIndex(Function(item) item = out_MailTitle)" DisplayName="메일 리스트에서 타이틀의 인덱스 | Assign" sap:VirtualizedContainerService.HintSize="479,178" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign sap2010:Annotation.AnnotationText="리스트에서 몇 번째 아이템인지 가져올 수 있나?&#xA;yourList.FindIndex(Function(item) &#xA;in_listTitle.FindIndex(Function(item) item = out_MailTitle)" DisplayName="메일 리스트에서 타이틀의 인덱스 | Assign" sap:VirtualizedContainerService.HintSize="479,137" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Int32">[ListIndex]</OutArgument>
       </Assign.To>
@@ -183,7 +183,7 @@ Where System.Text.RegularExpressions.Regex.IsMatch(item, ".*" + InputTitle + ".*
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -233,7 +233,7 @@ Where System.Text.RegularExpressions.Regex.IsMatch(item, ".*" + InputTitle + ".*
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:MultipleAssign>
-    <ui:MultipleAssign sap2010:Annotation.AnnotationText="&quot;:&quot; 기준으로 split&#xA;.Split(&quot;,&quot;, StringSplitOptions.RemoveEmptyEntries).Select(Function(item) item.Trim()).ToList()&#xA;" DisplayName="검색어 &quot;,&quot; 기준으로 분리 | Multiple Assign" sap:VirtualizedContainerService.HintSize="479,290" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+    <ui:MultipleAssign sap2010:Annotation.AnnotationText="&quot;:&quot; 기준으로 split&#xA;.Split(&quot;,&quot;, StringSplitOptions.RemoveEmptyEntries).Select(Function(item) item.Trim()).ToList()&#xA;" DisplayName="검색어 &quot;,&quot; 기준으로 분리 | Multiple Assign" sap:VirtualizedContainerService.HintSize="479,152" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
@@ -265,10 +265,12 @@ Where System.Text.RegularExpressions.Regex.IsMatch(item, ".*" + InputTitle + ".*
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:MultipleAssign>
-    <ui:MultipleAssign sap2010:Annotation.AnnotationText="&quot;:&quot; 기준으로 split&#xA;&quot;~&quot; 기준으로 split" DisplayName="기간 앞, 뒤 분리 | Multiple Assign" sap:VirtualizedContainerService.HintSize="479,260" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+    <ui:MultipleAssign sap2010:Annotation.AnnotationText="&quot;:&quot; 기준으로 split&#xA;&quot;~&quot; 기준으로 split" DisplayName="기간 앞, 뒤 분리 | Multiple Assign" sap:VirtualizedContainerService.HintSize="479,107" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
@@ -300,6 +302,36 @@ Where System.Text.RegularExpressions.Regex.IsMatch(item, ".*" + InputTitle + ".*
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:MultipleAssign>
+    <ui:MultipleAssign DisplayName="날짜변수에서 &quot;-&quot; 기호 제거 | Multiple Assign" sap:VirtualizedContainerService.HintSize="479,65" sap2010:WorkflowViewState.IdRef="MultipleAssign_4">
+      <ui:MultipleAssign.AssignOperations>
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_11">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[out_strDateStart]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[out_strDateStart.Replace("/", "").ToString.Trim]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_12">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[out_strDateEnd]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[out_strDateEnd.Replace("/", "").ToString.Trim]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+        </scg:List>
+      </ui:MultipleAssign.AssignOperations>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:MultipleAssign>
