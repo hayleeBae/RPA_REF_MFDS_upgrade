@@ -6,11 +6,12 @@
     <x:Property Name="out_strDateStart" Type="OutArgument(x:String)" />
     <x:Property Name="out_strDateEnd" Type="OutArgument(x:String)" />
     <x:Property Name="out_listWord" Type="OutArgument(scg:List(x:String))" />
+    <x:Property Name="io_int작업지시서" Type="InOutArgument(x:Int32)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1219,1020</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1219,2104</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_01_2_ProcessingVariable_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -49,9 +50,16 @@
     <sco:Collection x:TypeArguments="AssemblyReference">
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
       <AssemblyReference>System</AssemblyReference>
       <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
       <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
       <AssemblyReference>System.Core</AssemblyReference>
       <AssemblyReference>System.Data</AssemblyReference>
       <AssemblyReference>System.Data.Common</AssemblyReference>
@@ -60,44 +68,38 @@
       <AssemblyReference>System.Drawing.Common</AssemblyReference>
       <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
       <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
       <AssemblyReference>System.Net.Mail</AssemblyReference>
       <AssemblyReference>System.ObjectModel</AssemblyReference>
       <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
       <AssemblyReference>System.Xaml</AssemblyReference>
       <AssemblyReference>System.Xml</AssemblyReference>
       <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
-      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
-      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
-      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
-      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
-      <AssemblyReference>System.Linq.Async</AssemblyReference>
-      <AssemblyReference>System.Collections</AssemblyReference>
-      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
-      <AssemblyReference>System.Memory.Data</AssemblyReference>
-      <AssemblyReference>NPOI</AssemblyReference>
-      <AssemblyReference>System.Console</AssemblyReference>
-      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
-      <AssemblyReference>System.Security.Permissions</AssemblyReference>
-      <AssemblyReference>System.ComponentModel</AssemblyReference>
-      <AssemblyReference>System.Memory</AssemblyReference>
-      <AssemblyReference>System.Private.Uri</AssemblyReference>
-      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
-      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
-      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
-      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
-      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
-      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
-      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
-      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
-      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
-      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
-      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="메일타이틀은 해당월과 주제를 입력받아서 그 값을 조회&#xA;listTitle, listContents 변수에서 필요한 메일 내용 추출&#xA;- 검색어, 검색 기간" DisplayName="_01_2_ProcessingVariable" sap:VirtualizedContainerService.HintSize="512,955" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="메일타이틀은 해당월과 주제를 입력받아서 그 값을 조회&#xA;listTitle, listContents 변수에서 필요한 메일 내용 추출&#xA;- 검색어, 검색 기간" DisplayName="_01_2_ProcessingVariable" sap:VirtualizedContainerService.HintSize="637,2039" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="InputDate" />
       <Variable x:TypeArguments="x:String" Name="InputTitle" />
@@ -111,7 +113,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,65" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;사용자 입력 받아 메일 검색&quot;]">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="575,65" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;사용자 입력 받아 메일 검색&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -119,7 +121,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="날짜 입력 | Input Dialog" sap:VirtualizedContainerService.HintSize="450,65" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="검색하고 싶은 월을 입력하세요  -&gt; yyyy/MM" Title="사용자 날짜 입력">
+    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="날짜 입력 | Input Dialog" sap:VirtualizedContainerService.HintSize="575,65" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="검색하고 싶은 월을 입력하세요  -&gt; yyyy/MM" Title="사용자 날짜 입력">
       <ui:InputDialog.Result>
         <OutArgument x:TypeArguments="x:String">[InputDate]</OutArgument>
       </ui:InputDialog.Result>
@@ -130,7 +132,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:InputDialog>
-    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="주제 입력 | Input Dialog" sap:VirtualizedContainerService.HintSize="450,65" sap2010:WorkflowViewState.IdRef="InputDialog_2" IsPassword="False" Label="검색하고 타이틀을 입력하세요" Title="사용자 주제 입력">
+    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="주제 입력 | Input Dialog" sap:VirtualizedContainerService.HintSize="575,65" sap2010:WorkflowViewState.IdRef="InputDialog_2" IsPassword="False" Label="검색하고 타이틀을 입력하세요" Title="사용자 주제 입력">
       <ui:InputDialog.Result>
         <OutArgument x:TypeArguments="x:String">[InputTitle]</OutArgument>
       </ui:InputDialog.Result>
@@ -141,7 +143,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:InputDialog>
-    <Assign sap2010:Annotation.AnnotationText="String.Join(&quot;, &quot;, (From item In in_listTitle &#xA;Where System.Text.RegularExpressions.Regex.IsMatch(item, &quot;.*&quot; + InputDate + &quot;.*&quot;)).ToArray)&#xA;&#xA;.*: 임의의 문자(0개 이상), 어떤 문자열도 포함" DisplayName="입력 날짜로 해당 데이터만 남기기 | Assign" sap:VirtualizedContainerService.HintSize="450,167" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign sap2010:Annotation.AnnotationText="String.Join(&quot;, &quot;, (From item In in_listTitle &#xA;Where System.Text.RegularExpressions.Regex.IsMatch(item, &quot;.*&quot; + InputDate + &quot;.*&quot;)).ToArray)&#xA;&#xA;.*: 임의의 문자(0개 이상), 어떤 문자열도 포함" DisplayName="입력 날짜로 해당 데이터만 남기기 | Assign" sap:VirtualizedContainerService.HintSize="575,212" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[out_strMailTitle]</OutArgument>
       </Assign.To>
@@ -157,7 +159,7 @@ Where System.Text.RegularExpressions.Regex.IsMatch(item, ".*" + InputDate + ".*"
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <Assign sap2010:Annotation.AnnotationText="String.Join(&quot;, &quot;, (From item In in_listTitle Where System.Text.RegularExpressions.Regex.IsMatch(item, &quot;.*&quot; + InputTitle + &quot;.*&quot;)).ToArray)" DisplayName="입력 타이틀 해당 최종 데이터 | Assign" sap:VirtualizedContainerService.HintSize="450,122" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Assign sap2010:Annotation.AnnotationText="String.Join(&quot;, &quot;, (From item In in_listTitle Where System.Text.RegularExpressions.Regex.IsMatch(item, &quot;.*&quot; + InputTitle + &quot;.*&quot;)).ToArray)" DisplayName="입력 타이틀 해당 최종 데이터 | Assign" sap:VirtualizedContainerService.HintSize="575,152" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[out_strMailTitle]</OutArgument>
       </Assign.To>
@@ -173,7 +175,7 @@ Where System.Text.RegularExpressions.Regex.IsMatch(item, ".*" + InputTitle + ".*
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <If Condition="[out_strMailTitle = &quot;&quot;]" DisplayName="조건에 부합하는 메일 존재여부 확인 | If" sap:VirtualizedContainerService.HintSize="450,278" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[out_strMailTitle = &quot;&quot;]" DisplayName="조건에 부합하는 메일 존재여부 확인 | If" sap:VirtualizedContainerService.HintSize="575,1287" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -193,13 +195,21 @@ Where System.Text.RegularExpressions.Regex.IsMatch(item, ".*" + InputTitle + ".*
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,22" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="541,1059" sap2010:WorkflowViewState.IdRef="Sequence_3">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
+          <Assign DisplayName="작업지시서 변수 카운트 | Assign" sap:VirtualizedContainerService.HintSize="479,122" sap2010:WorkflowViewState.IdRef="Assign_4">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Int32">[io_int작업지시서]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Int32">1</InArgument>
+            </Assign.Value>
+          </Assign>
           <Assign sap2010:Annotation.AnnotationText="리스트에서 몇 번째 아이템인지 가져올 수 있나?&#xA;yourList.FindIndex(Function(item) &#xA;in_listTitle.FindIndex(Function(item) item = out_MailTitle)" DisplayName="메일 리스트에서 타이틀의 인덱스 | Assign" sap:VirtualizedContainerService.HintSize="479,179" sap2010:WorkflowViewState.IdRef="Assign_3">
             <Assign.To>
               <OutArgument x:TypeArguments="x:Int32">[ListIndex]</OutArgument>
@@ -365,7 +375,7 @@ Where System.Text.RegularExpressions.Regex.IsMatch(item, ".*" + InputTitle + ".*
         </Sequence>
       </If.Else>
     </If>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,48" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;해당 결과 검색 완료&quot;]">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="575,48" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;해당 결과 검색 완료&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
