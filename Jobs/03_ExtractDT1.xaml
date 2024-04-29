@@ -10,7 +10,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1219,2109</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>598,2253.0000000000005</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_03_ExtractDT_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -134,7 +134,7 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="조회한 전체 DT 추출 -&gt; 추출한 DT에서 URL 활용해서 이동 후 겟 텍스트" DisplayName="_03_ExtractDT1" sap:VirtualizedContainerService.HintSize="608,2044" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="조회한 전체 DT 추출 -&gt; 추출한 DT에서 URL 활용해서 이동 후 겟 텍스트" DisplayName="_03_ExtractDT1" sap:VirtualizedContainerService.HintSize="608,2188" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strYear" />
       <Variable x:TypeArguments="x:String" Name="strStartMonth" />
@@ -157,13 +157,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: 의약품안전나라 &gt; HOMEPAGE" sap:VirtualizedContainerService.HintSize="546,1812" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="72e82d86-9100-4842-ba55-4f27ee1405ac" Version="V2" WindowResize="Maximize">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: 의약품안전나라 &gt; HOMEPAGE" sap:VirtualizedContainerService.HintSize="546,1956" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="72e82d86-9100-4842-ba55-4f27ee1405ac" Version="V2" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="512,1555" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="512,1698" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -500,23 +500,12 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:RetryScope>
-            <uix:NGetText DisplayName="총 건수 | Get Text '총 65건'" sap:VirtualizedContainerService.HintSize="450,65" sap2010:WorkflowViewState.IdRef="NGetText_5" ScopeIdentifier="72e82d86-9100-4842-ba55-4f27ee1405ac" TextString="[strTotalCount]" Version="V3">
-              <uix:NGetText.Target>
-                <uix:TargetAnchorable BrowserURL="https://nedrug.mfds.go.kr/pbp/CCBAO01/getList?totalPages=7&amp;page=1&amp;limit=10&amp;sort=&amp;sortOrder=&amp;searchYn=true&amp;searchTypeCode=A&amp;entpName=&amp;itemName=&amp;dispsDateStart=2024-03-01&amp;dispsDateEnd=2024-04-30&amp;btnSearch=" CvTextArea="654, 608, 30, 15" CvType="AnyWordGroup" DesignTimeRectangle="630, 606, 54, 20" DesignTimeScaleFactor="1" ElementType="Text" FullSelectorArgument="&lt;webctrl aaname='총 65건' parentid='list' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='list' tag='SPAN' type='' class='' /&gt;" Guid="b21ab491-9281-4edf-87ef-85acf890d3ef" InformativeScreenshot="d7a7178c86bff1b1e6420547795f201f.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='의약품안전나라 &amp;gt; 고시/공고/알림 &amp;gt; 안전성정보 &amp;gt; 행정처분정보' /&gt;" SearchSteps="FuzzySelector, CV" Version="V3" Visibility="Interactive" />
-              </uix:NGetText.Target>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </uix:NGetText>
-            <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[out_URLDataTable]" DisplayName="URL DT 추출 | Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Table' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='순번' ReferenceIdx='0' Name='순번'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='업체명' ReferenceIdx='1' Name='업체명'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='업체명 Url' ReferenceIdx='2' Name='업체명 Url'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='품목명' ReferenceIdx='3' Name='품목명' IsDeleted='true'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='처분명' ReferenceIdx='4' Name='처분명' IsDeleted='true'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='처분일자' ReferenceIdx='5' Name='처분일자' IsDeleted='true'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='공개종료일자' ReferenceIdx='6' Name='공개종료일자' IsDeleted='true'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataNextLink' /&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='순번' attr='fulltext' /&gt;&lt;column name='업체명' attr='fulltext' name2='업체명 Url' attr2='href' /&gt;&lt;column name='품목명' attr='fulltext' /&gt;&lt;column name='처분명' attr='fulltext' /&gt;&lt;column name='처분일자' attr='fulltext' /&gt;&lt;column name='공개종료일자' attr='fulltext' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="450,197" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="None" ScopeIdentifier="72e82d86-9100-4842-ba55-4f27ee1405ac" Version="V3">
+            <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[out_URLDataTable]" DisplayName="URL DT 추출 | Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Table' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='순번' ReferenceIdx='0' Name='순번'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='업체명' ReferenceIdx='1' Name='업체명'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='업체명 Url' ReferenceIdx='2' Name='업체명 Url'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='품목명' ReferenceIdx='3' Name='품목명' IsDeleted='true'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='처분명' ReferenceIdx='4' Name='처분명' IsDeleted='true'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='처분일자' ReferenceIdx='5' Name='처분일자' IsDeleted='true'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='공개종료일자' ReferenceIdx='6' Name='공개종료일자' IsDeleted='true'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataNextLink' /&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='순번' attr='fulltext' /&gt;&lt;column name='업체명' attr='fulltext' name2='업체명 Url' attr2='href' /&gt;&lt;column name='품목명' attr='fulltext' /&gt;&lt;column name='처분명' attr='fulltext' /&gt;&lt;column name='처분일자' attr='fulltext' /&gt;&lt;column name='공개종료일자' attr='fulltext' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="450,198" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="72e82d86-9100-4842-ba55-4f27ee1405ac" Version="V3">
               <uix:NExtractData.NextLink>
-                <uix:TargetAnchorable BrowserURL="https://nedrug.mfds.go.kr/pbp/CCBAO01" DesignTimeRectangle="1286, 753, 35, 35" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;webctrl class='page_next' parentid='paging_div' tag='BUTTON' type='button' /&gt;" FuzzySelectorArgument="&lt;webctrl class='page_next' parentid='paging_div' tag='BUTTON' type='button' aaname='다음페이지' check:innerText='다음페이지' /&gt;" Guid="5bc3a003-6836-481a-8ed3-4fb3a4a52c9d" ScopeSelectorArgument="&lt;html app='chrome.exe' title='의약품안전나라 &amp;gt; 고시/공고/알림 &amp;gt; 안전성정보 &amp;gt; 행정처분정보' /&gt;" SearchSteps="FuzzySelector" Version="V3" Visibility="Interactive" />
+                <uix:TargetAnchorable BrowserURL="https://nedrug.mfds.go.kr/pbp/CCBAO01/getList?totalPages=7&amp;page=7&amp;limit=10&amp;sort=&amp;sortOrder=&amp;searchYn=&amp;searchTypeCode=A&amp;entpName=&amp;itemName=&amp;dispsDateStart=2024-03-01&amp;dispsDateEnd=2024-04-30" DesignTimeRectangle="1229, 761, 35, 35" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;webctrl aaname='다음페이지' parentid='paging_div' tag='BUTTON' type='button' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='다음페이지' parentid='paging_div' tag='BUTTON' type='button' class='page_next disabled' check:innerText='다음페이지' /&gt;" Guid="f9cc90dd-c996-4fc5-a39b-9c6148d6e5a1" ScopeSelectorArgument="&lt;html app='chrome.exe' title='의약품안전나라 &amp;gt; 고시/공고/알림 &amp;gt; 안전성정보 &amp;gt; 행정처분정보' /&gt;" SearchSteps="FuzzySelector" Version="V3" Visibility="Interactive" />
               </uix:NExtractData.NextLink>
               <uix:NExtractData.Target>
-                <uix:TargetAnchorable DesignTimeRectangle="630, 780, 930, 830" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;webctrl id='JColResizer0' tag='TABLE' /&gt;" Guid="469822f8-29a2-4edc-ba86-16db2cef8042" InformativeScreenshot="9a3b1d7e2f58d72aa7b8695c3b14f3e3.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='의약품안전나라 &amp;gt; 고시/공고/알림 &amp;gt; 안전성정보 &amp;gt; 행정처분정보' /&gt;" SearchSteps="Selector" Version="V3" Visibility="Interactive" />
+                <uix:TargetAnchorable DesignTimeRectangle="630, 429, 930, 312" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;webctrl id='JColResizer0' tag='TABLE' /&gt;" Guid="9ab58ea2-3a1a-42bc-a2bb-b35c5553a5a9" InformativeScreenshot="9a3b1d7e2f58d72aa7b8695c3b14f3e3.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='의약품안전나라 &amp;gt; 고시/공고/알림 &amp;gt; 안전성정보 &amp;gt; 행정처분정보' /&gt;" SearchSteps="Selector" Version="V3" Visibility="Interactive" />
               </uix:NExtractData.Target>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -525,7 +514,18 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NExtractData>
-            <Assign sap2010:Annotation.AnnotationText="Cint(system.text.RegularExpressions.Regex.Match(strTotalCount, &quot;\d+&quot;).ToString.Trim)&#xD;&#xA;&#xD;&#xA;[^0-9] : 숫자가 아닌 모든 문자 선택 -&gt; " DisplayName="TotalCount 변수 생성 | Assign" sap:VirtualizedContainerService.HintSize="450,194" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <uix:NGetText DisplayName="총 건수 | Get Text '총 65건'" sap:VirtualizedContainerService.HintSize="450,198" sap2010:WorkflowViewState.IdRef="NGetText_5" ScopeIdentifier="72e82d86-9100-4842-ba55-4f27ee1405ac" TextString="[strTotalCount]" Version="V3">
+              <uix:NGetText.Target>
+                <uix:TargetAnchorable BrowserURL="https://nedrug.mfds.go.kr/pbp/CCBAO01/getList?totalPages=7&amp;page=1&amp;limit=10&amp;sort=&amp;sortOrder=&amp;searchYn=true&amp;searchTypeCode=A&amp;entpName=&amp;itemName=&amp;dispsDateStart=2024-03-01&amp;dispsDateEnd=2024-04-30&amp;btnSearch=" CvTextArea="654, 608, 30, 15" CvType="AnyWordGroup" DesignTimeRectangle="630, 606, 54, 20" DesignTimeScaleFactor="1" ElementType="Text" FullSelectorArgument="&lt;webctrl aaname='총 65건' parentid='list' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='list' tag='SPAN' type='' class='' /&gt;" Guid="b21ab491-9281-4edf-87ef-85acf890d3ef" InformativeScreenshot="d7a7178c86bff1b1e6420547795f201f.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='의약품안전나라 &amp;gt; 고시/공고/알림 &amp;gt; 안전성정보 &amp;gt; 행정처분정보' /&gt;" SearchSteps="FuzzySelector, CV" Version="V3" Visibility="Interactive" />
+              </uix:NGetText.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NGetText>
+            <Assign sap2010:Annotation.AnnotationText="Cint(system.text.RegularExpressions.Regex.Match(strTotalCount, &quot;\d+&quot;).ToString.Trim)&#xA;&#xA;[^0-9] : 숫자가 아닌 모든 문자 선택" DisplayName="TotalCount 변수 생성 | Assign" sap:VirtualizedContainerService.HintSize="450,199" sap2010:WorkflowViewState.IdRef="Assign_1">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Int32">[out_intTotalCount]</OutArgument>
               </Assign.To>
@@ -540,7 +540,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </Assign>
-            <If Condition="[out_URLDataTable.RowCount = out_intTotalCount]" DisplayName="데이터 추출 갯수 비교 | If" sap:VirtualizedContainerService.HintSize="450,591" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[out_URLDataTable.RowCount = out_intTotalCount]" DisplayName="데이터 추출 갯수 비교 | If" sap:VirtualizedContainerService.HintSize="450,595" sap2010:WorkflowViewState.IdRef="If_1">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -548,7 +548,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <If.Then>
-                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,100" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,101" sap2010:WorkflowViewState.IdRef="Sequence_15">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -557,14 +557,14 @@
                 </Sequence>
               </If.Then>
               <If.Else>
-                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,328" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,330" sap2010:WorkflowViewState.IdRef="Sequence_14">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="354,130" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="데이터 추출 갯수 상이" />
-                  <Throw Exception="[New Exception(&quot;데이터 추출 갯수 상이&quot;)]" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="354,131" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="데이터 추출 갯수 상이" />
+                  <Throw Exception="[New Exception(&quot;데이터 추출 갯수 상이&quot;)]" sap:VirtualizedContainerService.HintSize="354,114" sap2010:WorkflowViewState.IdRef="Throw_1" />
                 </Sequence>
               </If.Else>
             </If>
